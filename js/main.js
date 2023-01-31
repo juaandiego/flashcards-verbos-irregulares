@@ -3,7 +3,7 @@ Un poco abstracta la idea de esta preentrega,
 pero aquí vamos
 */
 
-alert("¡Hola! Vamos a dibujar una grilla en la consola, simulando un tablero con flashcards. Presiona para continuar.");
+alert("¡Hola! Vamos a dibujar una grilla en la consola simulando un tablero o mesa con flashcards. Presiona para continuar.");
 
 let numFilas = parseInt(prompt("¿Cuántas filas tendrá la grilla? Mínimo 2, máximo 8"));
 while (!numFilas || !(numFilas >= 2 && numFilas <= 8)) {
