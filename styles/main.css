@@ -89,7 +89,7 @@ body {
 }
 
 .card-back {
-    background-color: dodgerblue;
+    background-color: #000;
     color: white;
     transform: rotateY(180deg);
 }
