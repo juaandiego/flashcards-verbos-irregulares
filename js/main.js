@@ -16,7 +16,6 @@ while (!numColumnas || !(numColumnas >= 2 && numColumnas <= 8)) {
 }
 
 console.log(`Perfecto, hagamos una grilla de flashcards de ${numFilas}x${numColumnas}`);
-
 let textoFila = "";
 for (let i = 0; i < numFilas; i++) {
     for (let j = 0; j < numColumnas; j++) {
