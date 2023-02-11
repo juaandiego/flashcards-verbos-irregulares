@@ -37,12 +37,12 @@ const imprimeListaDesafio2 = lista => {
 
     for (let verbo of lista) {
         textoFrente += `
-        <p style="p-b05">
+        <p class="p-b025">
             Verb <strong>${verbo.infinitive}</strong> &gt; simple past: <strong>${verbo.simplePast}</strong>
         </p>`;
 
         textoAtras += `
-        <p style="p-b05">
+        <p class="p-b025">
             Verb <strong>${verbo.infinitive}</strong> &gt; past participle: <strong>${verbo.pastParticiple}</strong>
         </p>`;
     }
