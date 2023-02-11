@@ -14,19 +14,26 @@
 </head>
 
 <body>
-    <main class="maincard">
+    <section class="maincard">
         <div class="relative-container">
-            <div class="card-front">
-                <p class="p-b">¡Hola! Revisa la consola para ver el output.</p>
-                <p class="p-b">Actualiza la página para ejecutar de nuevo.</p>
+            <div class="card-front" id="cardFront">
+                <h1 class="card-title p-b">Verbs: Simple Past</h1>
             </div>
-            <div class="card-back">
-                Testeando para las flashcards.
+            <div class="card-back" id="cardBack">
+                <h1 class="card-title p-b">Verbs: Past Participle</h1>
             </div>
         </div>
-    </main>
+    </section>
+    <section class="buttons">
+        <!-- Esto no hace nada, pero es para dar una idea del futuro UI -->
+        <form action="#">
+            <button type="button" value="previous">Anterior</button>
+            <button type="button" value="next">Siguiente</button>
+        </form>
+    </section>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/verbs.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
 </body>
 
 </html>

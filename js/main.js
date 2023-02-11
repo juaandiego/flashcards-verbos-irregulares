@@ -1,34 +1,60 @@
-/*
-Un poco abstracta la idea de esta preentrega,
-pero aquí vamos
-*/
-function imprimeGrilla(filas, columnas) {
-    console.log(`Perfecto, hagamos una grilla de flashcards de ${filas}x${columnas}`);
+import { verbos } from "./verbs.js";
+let listaActual = [];
+const dificultades = 5;
 
-    let textoFila = "";
-    for (let i = 0; i < filas; i++) {
-        for (let j = 0; j < columnas; j++) {
-            textoFila += "🟩 ";
-        }
-        console.log(`${(i + 1)}: ${textoFila} `);
-        textoFila = "";
+const cardFront = document.getElementById("cardFront");
+const cardBack = document.getElementById("cardBack");
+
+const randomizaLista = lista => {
+    for (let i = lista.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [lista[i], lista[j]] = [lista[j], lista[i]];
     }
+    return lista;
 }
 
-function generaGrilla() {
-    alert("¡Hola! Vamos a dibujar una grilla en la consola simulando un tablero o mesa con flashcards. Presiona para continuar.");
+const generaLista = (cantidadVerbos, dificultad) => {
+    let puntoMedio = Math.floor(((dificultad - 1) / (dificultades - 1)) * (verbos.length));
+    let limiteInferior = puntoMedio - Math.floor(cantidadVerbos / 2);
+    let limiteSuperior = puntoMedio + Math.ceil(cantidadVerbos / 2) - 1;
 
-    let numFilas = parseInt(prompt("¿Cuántas filas tendrá la grilla? Mínimo 2, máximo 8"));
-    while (!numFilas || !(numFilas >= 2 && numFilas <= 8)) {
-        numFilas = parseInt(prompt("Valor no válido. Intentemos de nuevo: ¿cuántas filas tendrá la grilla? Mínimo 2, máximo 8"));
+    if (limiteInferior < 0) {
+        limiteSuperior += Math.abs(limiteInferior);
+        limiteInferior = 0;
+    } else if (limiteSuperior > verbos.length - 1) {
+        limiteInferior -= limiteSuperior - verbos.length + 1;
+        limiteSuperior = verbos.length - 1;
     }
 
-    let numColumnas = parseInt(prompt(`Perfecto, son ${numFilas} filas. ¿Y cuántas columnas?`));
-    while (!numColumnas || !(numColumnas >= 2 && numColumnas <= 8)) {
-        numColumnas = parseInt(prompt("Valor no válido. Intentemos de nuevo: ¿cuántas columnas tendrá la grilla? Mínimo 2, máximo 8"));
-    }
-
-    imprimeGrilla(numFilas, numColumnas);
+    return verbos.slice(limiteInferior, limiteSuperior + 1);
 }
 
-generaGrilla();
+// Sé que no era necesario manejar el DOM para este desafío,
+// pero era muuucho más fácil validar todo así
+const imprimeListaDesafio2 = lista => {
+    let textoFrente = "";
+    let textoAtras = "";
+
+    for (let verbo of lista) {
+        textoFrente += `
+        <p style="p-b05">
+            Verb <strong>${verbo.infinitive}</strong> &gt; simple past: <strong>${verbo.simplePast}</strong>
+        </p>`;
+
+        textoAtras += `
+        <p style="p-b05">
+            Verb <strong>${verbo.infinitive}</strong> &gt; past participle: <strong>${verbo.pastParticiple}</strong>
+        </p>`;
+    }
+
+    cardFront.innerHTML += textoFrente;
+    cardBack.innerHTML += textoAtras;
+}
+
+listaActual = generaLista(
+    parseInt(prompt(`Cantidad de verbos a practicar (máx. ${verbos.length})`)),
+    parseInt(prompt(`Dificultad 1-${dificultades}`))
+);
+// No valido estos inputs en este momento porque la forma de capturar el valor será distinta luego
+listaActual = randomizaLista(listaActual);
+imprimeListaDesafio2(listaActual);

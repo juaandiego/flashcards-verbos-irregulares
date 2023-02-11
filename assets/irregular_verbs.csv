@@ -1,0 +1,102 @@
+﻿popularityRank;infinitive;infinitiveExtraInfo;simplePast;simplePastAlt;simplePastExtraInfo;pastParticiple;pastParticipleAlt;pastParticipleExtraInfo;pastFormsEqual
+1;to be;I, he, she it;was;;;been;;;false
+2;to be ;you, we, they;were;;;been;;;false
+3;to have ;;had;;;had;;;true
+4;to do ;;did;;;done;;;false
+5;to say ;;said;;;said;;;true
+6;to go ;;went;;;gone;;;false
+7;to get ;;got;;;got;gotten;"in US English, ""gotten"" is similar to ""obtain"" and ""got"" is more like ""have""";false
+8;to make ;;made;;;made;;;true
+9;to know ;;knew;;;known;;;false
+10;to think ;;thought;;;thought;;;true
+11;to take ;;took;;;taken;;;false
+12;to see ;;saw;;;seen;;;false
+13;to come ;;came;;;come;;;false
+14;to find ;;found;;;found;;;true
+15;to give ;;gave;;;given;;;false
+16;to tell ;;told;;;told;;;true
+17;to feel ;;felt;;;felt;;;true
+18;to become ;;became;;;become;;;false
+19;to leave ;;left;;;left;;;true
+20;to put ;;put;;;put;;;true
+21;to mean ;;meant;;;meant;;;true
+22;to keep ;;kept;;;kept;;;true
+23;to let ;;let;;;let;;;true
+24;to begin ;;began;;;begun;;;false
+25;to show ;;showed;;;shown;;;false
+26;to hear ;;heard;;;heard;;;true
+27;to run ;;ran;;;run;;;false
+28;to hold ;;held;;;held;;;true
+29;to bring ;;brought;;;brought;;;true
+30;to write ;;wrote;;;written;;;false
+31;to sit ;;sat;;;sat;;;true
+32;to stand ;;stood;;;stood;;;true
+33;to lose ;;lost;;;lost;;;true
+34;to pay ;;paid;;;paid;;;true
+35;to meet ;;met;;;met;;;true
+36;to set ;;set;;;set;;;true
+37;to learn ;;learnt;learned;both forms are correct;learnt;learned;both forms are correct;true
+38;to lead ;;led;;;led;;;true
+39;to understand ;;understood;;;understood;;;true
+40;to speak ;;spoke;;;spoken;;;false
+41;to read ;;read;;;read;;;true
+42;to spend ;;spent;;;spent;;;true
+43;to grow ;;grew;;;grown;;;false
+44;to win ;;won;;;won;;;true
+45;to buy ;;bought;;;bought;;;true
+46;to send ;;sent;;;sent;;;true
+47;to build ;;built;;;built;;;true
+48;to fall ;;fell;;;fallen;;;false
+49;to cut ;;cut;;;cut;;;true
+50;to sell ;;sold;;;sold;;;true
+51;to drive ;;drove;;;driven;;;false
+52;to break ;;broke;;;broken;;;false
+53;to wear ;;wore;;;worn;;;false
+54;to hit ;;hit;;;hit;;;true
+55;to eat ;;ate;;;eaten;;;false
+56;to teach ;;taught;;;taught;;;true
+57;to catch ;;caught;;;caught;;;true
+58;to draw ;;drew;;;drawn;;;false
+59;to choose ;;chose;;;chosen;;;false
+60;to seek ;;sought;;;sought;;;true
+61;to deal ;;dealt;;;dealt;;;true
+62;to fight ;;fought;;;fought;;;true
+63;to throw ;;threw;;;thrown;;;false
+64;to rise ;;rose;;;risen;;;false
+65;to shoot ;;shot;;;shot;;;true
+66;to lie ;to be in a horizontal position;lay;;other definitions are not irregular;lain;;other definitions are not irregular;false
+67;to lie ;to speak falsely;lied;;this definition of this verb is regular;lied;;this definition of this verb is regular;true
+68;to prove ;;proved;;the simple past is regular;proved;proven;;false
+69;to hang ;to attach or suspend;hung;;other definitions are not irregular;hung;;other definitions are not irregular;true
+70;to hang ;to suspend by the neck until dead;hanged;;this definition of this verb is regular;hanged;;this definition of this verb is regular;true
+71;to forget ;;forgot;;;forgotten;;;false
+72;to shake ;;shook;;;shaken;;;false
+73;to fly ;;flew;;;flown;;;false
+74;to sing ;;sang;;;sung;;;false
+75;to beat ;;beat;;;beaten;;;false
+76;to cost ;;cost;;;cost;;;true
+77;to hurt ;;hurt;;;hurt;;;true
+78;to strike ;;struck;;;struck;;;true
+79;to sleep ;;slept;;;slept;;;true
+80;to stick ;;stuck;;;stuck;;;true
+81;to drink ;;drank;;;drunk;;;false
+82;to hide ;;hid;;;hidden;;;false
+83;to ride ;;rode;;;ridden;;;false
+84;to feed ;;fed;;;fed;;;true
+85;to spread ;;spread;;;spread;;;true
+86;to blow ;;blew;;;blown;;;false
+87;to burn ;;burned;burnt;"""burned"" is more common in US English";burned;burnt;"""burned"" is more common in US English";true
+88;to shut ;;shut;;;shut;;;true
+89;to bear ;"in the sense of ""birth""";bore;;;born;;;false
+90;to bear ;"in the sense of ""carry, tolerate""";bore;;;borne;;;false
+91;to wake ;;woke;;;woken;;;false
+92;to steal ;;stole;;;stolen;;;false
+93;to cast ;;cast;;;cast;;;true
+94;to slide ;;slid;;;slid;;;true
+95;to bend ;;bent;;;bent;;;true
+96;to tear ;;tore;;;torn;;;false
+97;to ring ;;rang;;;rung;;;false
+98;to light ;;lit;;;lit;;;true
+99;to swing ;;swung;;;swung;;;true
+100;to dig ;;dug;;;dug;;;true
+101;to grind;;ground;;;ground;;;true
