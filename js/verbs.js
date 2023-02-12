@@ -1,5 +1,5 @@
 // Imagino que luego pasaremos esto a un JSON
-// Generé un .csv desde un artículo online y luego lo convertí online a esto 
+// Generé un .csv desde un artículo y luego lo convertí online a objeto 
 
 export const verbos = [
     {
@@ -797,7 +797,7 @@ export const verbos = [
     {
         "popularityRank": 67,
         "infinitive": "to lie",
-        "infinitiveExtraInfo": "to speak falsely",
+        "infinitiveExtraInfo": "to say false things",
         "simplePast": "lied",
         "simplePastAlt": "",
         "simplePastExtraInfo": "this definition of this verb is regular",
