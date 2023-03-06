@@ -3,11 +3,14 @@ import { verbos } from "./verbs.js";
 const dificultades = 5;
 const longPorDefecto = 20;
 const dificultadPorDefecto = 2;
+const teclasControl = ["j", "l", "J", "L", "k", "K"]
 let textoFrente = "";
 let textoAtras = "";
 
 
 /* Elementos */
+const flipper = document.getElementById("card");
+let cardStatus = flipper.classList;
 const cardFront = document.getElementById("cardFront");
 const cardBack = document.getElementById("cardBack");
 const overlaySettings = document.getElementById("mainOverlay");
@@ -16,6 +19,7 @@ const selectorDificultad = document.getElementById("selectorDificultad");
 const selectorCantidad = document.getElementById("cantidadEscogida");
 const inputsActualiza = document.getElementById("actualizaPosicion").elements;
 const reinicia = document.getElementById("reinicia");
+const flippeables = [cardFront, cardBack];
 
 
 /* ¿Sesión existente? */
@@ -119,30 +123,53 @@ const imprimeTarjetaActual = (pos) => {
 }
 
 const actualizaPosicion = direccion => {
+    let huboCambios = false;
+    let estaVolteada = cardStatus.contains("flip");
+
     switch (direccion) {
         case "siguiente":
-            posicionActual = posicionActual < (listaActual.length - 1)
-                ? posicionActual + 1
-                : listaActual.length - 1;
+        case "l":
+            if (posicionActual < (listaActual.length - 1)) {
+                posicionActual++;
+                huboCambios = true;
+            } else {
+                posicionActual = listaActual.length - 1;
+            }
             break;
         case "anterior":
-            posicionActual = posicionActual > 0
-                ? posicionActual - 1
-                : 0;
+        case "j":
+            if (posicionActual > 0) {
+                posicionActual--;
+                huboCambios = true;
+            } else {
+                posicionActual = 0;
+            }
             break;
         case "inicio":
-            posicionActual = 0;
+            if (posicionActual !== 0) {
+                posicionActual = 0;
+                huboCambios = true;
+            }
             break;
         case "final":
-            posicionActual = listaActual.length - 1;
-        default:
-            posicionActual = posicionActual < (listaActual.length - 1)
-                ? posicionActual + 1
-                : listaActual.length - 1;
+            if (posicionActual !== listaActual.length - 1) {
+                posicionActual = listaActual.length;
+                huboCambios = true;
+            }
+            break
+        case "flip":
+        case "k":
+            estaVolteada
+                ? cardStatus.remove("flip")
+                : cardStatus.add("flip");
+            break;
     }
 
-    imprimeTarjetaActual(posicionActual);
-    localStorage.setItem("posicionActual", `${posicionActual}`);
+    if (huboCambios) {
+        estaVolteada && cardStatus.remove("flip");
+        imprimeTarjetaActual(posicionActual);
+        localStorage.setItem("posicionActual", `${posicionActual}`);
+    }
 }
 
 const borraSesion = () => {
@@ -165,5 +192,15 @@ for (let i = 0; i < inputsActualiza.length; i++) {
         actualizaPosicion(inputsActualiza[i].value);
     });
 }
+
+flippeables.forEach((e) => {
+    e.addEventListener("click", () => {
+        actualizaPosicion("flip");
+    });
+})
+
+document.addEventListener("keypress", (e) => {
+    if (teclasControl.indexOf(e.key) !== -1) { actualizaPosicion(e.key.toLowerCase()); }
+})
 
 reinicia.addEventListener("click", borraSesion);

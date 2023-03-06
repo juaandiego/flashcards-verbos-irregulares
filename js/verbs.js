@@ -1,6 +1,3 @@
-// Imagino que luego pasaremos esto a un JSON
-// Generé un .csv desde un artículo y luego lo convertí online a objeto 
-
 export const verbos = [
     {
         "popularityRank": 1,

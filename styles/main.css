@@ -169,7 +169,7 @@ main {
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
-.maincard:hover .relative-container {
+.maincard.flip .relative-container {
     transform: rotateY(180deg);
 }
 
