@@ -32,25 +32,45 @@ body {
     line-height: 1;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 ol,
 ul {
     list-style: none;
 }
 
-* {
-    box-sizing: border-box;
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 
 /* ESTILOS GENERALES */
 body {
     background-color: #e1e1e1;
+    font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+}
+
+main {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     align-items: center;
     justify-content: center;
-    font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons button {
+    font-size: 16px;
 }
 
 .p-b {
@@ -61,9 +81,72 @@ body {
     padding-bottom: 0.25rem;
 }
 
-.card-title {
-    font-size: 18px;
+.i {
+    font-style: italic;
+}
+
+.b {
     font-weight: 700;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+
+/* OVERLAY */
+.main-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+}
+
+.main-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    box-sizing: border-box;
+    padding: 30px;
+    min-width: 300px;
+    max-width: 6000px;
+    background: #fff;
+    text-align: center;
+}
+
+.settings-form {
+    padding: 10px 0px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.settings-form div {
+    padding: 20px 0px 0px;
+}
+
+.choose-qty {
+    font-size: 24px;
+    border: 1px solid #d1d1d1;
+    padding: 5px;
+    text-align: center;
+}
+
+.big-button {
+    font-size: 18px;
 }
 
 
@@ -98,8 +181,6 @@ body {
     padding: 20px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    overflow-y: scroll;
-    /* Borrar luego! */
 }
 
 .card-front {
@@ -111,4 +192,9 @@ body {
     background-color: #000;
     color: white;
     transform: rotateY(180deg);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
 }
