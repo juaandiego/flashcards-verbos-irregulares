@@ -80,7 +80,7 @@ export const verbos = [
         "simplePastExtraInfo": "",
         "pastParticiple": "got",
         "pastParticipleAlt": "gotten",
-        "pastParticipleExtraInfo": "in US English, \"gotten\" is similar to \"obtain\" and \"got\" is more like \"have",
+        "pastParticipleExtraInfo": "in US English, \"gotten\" is similar to \"obtain\" and \"got\" is more like \"have\"",
         "pastFormsEqual": false
     },
     {
@@ -1037,10 +1037,10 @@ export const verbos = [
         "infinitiveExtraInfo": "",
         "simplePast": "burned",
         "simplePastAlt": "burnt",
-        "simplePastExtraInfo": "burned\" is more common in US English",
+        "simplePastExtraInfo": "\"burned\" is more common in US English",
         "pastParticiple": "burned",
         "pastParticipleAlt": "burnt",
-        "pastParticipleExtraInfo": "burned\" is more common in US English",
+        "pastParticipleExtraInfo": "\"burned\" is more common in US English",
         "pastFormsEqual": true
     },
     {
@@ -1058,7 +1058,7 @@ export const verbos = [
     {
         "popularityRank": 89,
         "infinitive": "to bear",
-        "infinitiveExtraInfo": "in the sense of \"birth",
+        "infinitiveExtraInfo": "in the sense of \"birth\"",
         "simplePast": "bore",
         "simplePastAlt": "",
         "simplePastExtraInfo": "",
@@ -1070,7 +1070,7 @@ export const verbos = [
     {
         "popularityRank": 90,
         "infinitive": "to bear",
-        "infinitiveExtraInfo": "in the sense of \"carry, tolerate",
+        "infinitiveExtraInfo": "in the sense of \"carry, tolerate\"",
         "simplePast": "bore",
         "simplePastAlt": "",
         "simplePastExtraInfo": "",

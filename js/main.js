@@ -56,14 +56,13 @@ const defineSesion = settings => {
     }
 
     let listaGenerada = generaLista(cantidad, dificultad);
-    let listaRandomizada = randomizaLista(listaGenerada);
+    listaActual = randomizaLista(listaGenerada);
 
     let sesion = { cantidad, dificultad }
     let sesionJson = JSON.stringify(sesion);
-    let listaJson = JSON.stringify(listaRandomizada);
+    let listaJson = JSON.stringify(listaActual);
     localStorage.setItem("sesion", sesionJson);
     localStorage.setItem("listaActual", listaJson);
-    listaActual = listaRandomizada;
     localStorage.setItem("posicionActual", "0");
 
     overlaySettings.className = "main-overlay";
@@ -100,21 +99,27 @@ const imprimeTarjetaActual = (pos) => {
     let verbo = listaActual[pos];
 
     textoFrente = `
-        <h2 class="card-title p-b025">Verb: ${verbo.infinitive}</h2>
+        <h2 class="card-title p-b025">
+            Verb:<br />
+            <span class="card-title-verb-big">${verbo.infinitive}</span>
+        </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
         <p class="p-b025">
             Verbo ${pos + 1} de ${listaActual.length}
         </p>`;
 
     textoAtras = `
-        <h2 class="card-title p-b025">Verb: ${verbo.infinitive}</h2>
+        <h2 class="card-title p-b025">
+            Verb:<br />
+            <span class="card-title-verb-big">${verbo.infinitive}</span>
+        </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
 
-        <h3 class="b">${verbo.simplePast}</h3>
+        <h3 class="card-title-verb">${verbo.simplePast}</h3>
         <p class="p-b025">simple past</p>
         <p class="i p-b"> ${verbo.simplePastExtraInfo} </p>
         
-        <h3 class="b">${verbo.pastParticiple}</h3>
+        <h3 class="card-title-verb">${verbo.pastParticiple}</h3>
         <p class="p-b025">past participle</p>
         <p class="i p-b"> ${verbo.pastParticipleExtraInfo} </p>`;
 
@@ -200,7 +205,8 @@ flippeables.forEach((e) => {
 })
 
 document.addEventListener("keypress", (e) => {
-    if (teclasControl.indexOf(e.key) !== -1) { actualizaPosicion(e.key.toLowerCase()); }
+    let tecla = e.key.toLowerCase();
+    if (teclasControl.indexOf(tecla) !== -1) { actualizaPosicion(tecla); }
 })
 
 reinicia.addEventListener("click", borraSesion);
