@@ -3,7 +3,7 @@ import { verbos } from "./verbs.js";
 const dificultades = 5;
 const longPorDefecto = 20;
 const dificultadPorDefecto = 2;
-const teclasControl = ["j", "l", "J", "L", "k", "K"]
+const teclasControl = ["j", "J", "l", "L", "k", "K"]
 let textoFrente = "";
 let textoAtras = "";
 
