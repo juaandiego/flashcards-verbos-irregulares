@@ -49,7 +49,7 @@ const iniciaApp = async () => {
 
 const cargaVerbos = async () => {
     try {
-        const response = await fetch("../assets/verbs.json");
+        const response = await fetch("../../assets/verbs.json");
         const data = await response.json();
         return data;
     } catch (error) {
@@ -70,19 +70,15 @@ const defineSesion = settings => {
     let checkParticipio = settings.get("checkParticipio") ? true : false;
     let checkRandom = settings.get("checkRandom") ? true : false;
 
+    if (!checkSimple && !checkParticipio) { checkSimple = true; }
+
     let cantidad = settings.get("cantidad");
-    if (!cantidad || cantidad < 1) {
-        cantidad = longPorDefecto;
-    } else if (cantidad > verbos.length) {
-        cantidad = verbos.length;
-    }
+    if (!cantidad || cantidad < 1) { cantidad = longPorDefecto; }
+    else if (cantidad > verbos.length) { cantidad = verbos.length; }
 
     let dificultad = settings.get("dificultad");
-    if (!dificultad || dificultad < 1) {
-        dificultad = dificultadPorDefecto;
-    } else if (dificultad > dificultades) {
-        dificultad = dificultades;
-    }
+    if (!dificultad || dificultad < 1) { dificultad = dificultadPorDefecto; }
+    else if (dificultad > dificultades) { dificultad = dificultades; }
 
     let listaGenerada = generaLista(cantidad, dificultad);
     listaActual = checkRandom
@@ -150,7 +146,7 @@ const imprimeTarjetaActual = (pos) => {
             <span class="card-title-verb-big">${verbo.infinitive}</span>
         </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
-    `
+    `;
 
     if (sesion.checkSimple === true) {
         textoAtras += `
