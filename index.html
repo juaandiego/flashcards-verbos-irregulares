@@ -17,7 +17,7 @@
     <main>
         <section class="main-overlay" id="mainOverlay">
             <div class="overlay-content">
-                <h2 class="card-title p-b">¡Hola! Acá puedes practicar los verbos irregulares en inglés</h2>
+                <h2 class="card-title p-b b">¡Hola! Acá puedes practicar los verbos irregulares en inglés</h2>
                 <p>Los 101 verbos más comunes están disponibles, ordenados según su frecuencia de uso. Elige la
                     dificultad y cantidad de verbos a practicar.</p>
                 <div class="settings-form">
@@ -32,6 +32,14 @@
                             <p class="i">¿Cuántos verbos practicarás?</p>
                         </div>
                         <div>
+                            <input type="checkbox" id="checkSimple" name="checkSimple" value="0" checked>
+                            <label for="checkSimple">Simple past</label>
+                            <input type="checkbox" id="checkParticipio" name="checkParticipio" value="1" checked>
+                            <label for="checkParticipio">Past participle</label>
+                            <input type="checkbox" id="checkRandom" name="checkRandom" checked>
+                            <label for="checkRandom">Orden aleatorio</label>
+                        </div>
+                        <div>
                             <input type="submit" value="¡Comencemos!" class="big-button">
                         </div>
                     </form>
@@ -39,17 +47,25 @@
             </div>
         </section>
         <section class="top-title">
-            <h1>¡Practica los verbos irregulares en inglés!</h1>
-            <p>Voltea las cartas y revisa las conjugaciones (puedes hacer click o usar los botones)</p>
+            <h1>Verbos irregulares en inglés</h1>
+            <p>Voltea las cartas y revisa las conjugaciones</p>
         </section>
-        <section class="maincard" id="card">
-            <div class="relative-container">
-                <div class="card-front" id="cardFront">
-                    <h2 class="card-title p-b">¡Acá estarán los verbos en infinitivo!</h2>
+        <section class="cardspace">
+            <div id="flechaAntes" class="arrowspace" data-action="anterior">
+                <span class="arrow">&lt;</span>
+            </div>
+            <div class="maincard" id="card">
+                <div class="relative-container">
+                    <div class="card-front" id="cardFront">
+                        <h2 class="card-title p-b">¡Acá estarán los verbos en infinitivo!</h2>
+                    </div>
+                    <div class="card-back" id="cardBack">
+                        <h2 class="card-title p-b">Acá estarán las conjugaciones de los verbos</h2>
+                    </div>
                 </div>
-                <div class="card-back" id="cardBack">
-                    <h2 class="card-title p-b">Acá estarán las conjugaciones de los verbos</h2>
-                </div>
+            </div>
+            <div id="flechaDespues" class="arrowspace" data-action="siguiente">
+                <span class="arrow">&gt;</span>
             </div>
         </section>
         <section class="buttons">
@@ -70,8 +86,7 @@
         </section>
     </main>
 
-    <script src="./js/verbs.js" type="module"></script>
-    <script src="./js/main.js" type="module"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

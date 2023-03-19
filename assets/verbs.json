@@ -1,4 +1,4 @@
-export const verbos = [
+[
     {
         "popularityRank": 1,
         "infinitive": "to be",
@@ -1211,4 +1211,4 @@ export const verbos = [
         "pastParticipleExtraInfo": "",
         "pastFormsEqual": true
     }
-];
+]

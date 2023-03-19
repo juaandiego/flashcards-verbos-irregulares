@@ -43,6 +43,7 @@ ul {
 
 input[type='number'] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -53,8 +54,19 @@ input::-webkit-inner-spin-button {
 
 /* ESTILOS GENERALES */
 body {
-    background-color: #e1e1e1;
     font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+    color: #222;
+
+    /* Mesh background gracias a CSSHero */
+    background-color: #9999ff;
+    background-image:
+        radial-gradient(at 16% 96%, hsla(172, 80%, 73%, 1) 0px, transparent 50%),
+        radial-gradient(at 96% 31%, hsla(35, 64%, 78%, 1) 0px, transparent 50%),
+        radial-gradient(at 40% 86%, hsla(322, 72%, 73%, 1) 0px, transparent 50%),
+        radial-gradient(at 38% 20%, hsla(50, 86%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 94% 85%, hsla(40, 95%, 67%, 1) 0px, transparent 50%),
+        radial-gradient(at 84% 62%, hsla(308, 75%, 79%, 1) 0px, transparent 50%),
+        radial-gradient(at 82% 82%, hsla(179, 92%, 65%, 1) 0px, transparent 50%);
 }
 
 main {
@@ -126,10 +138,9 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    box-sizing: border-box;
     padding: 30px;
     min-width: 300px;
-    max-width: 6000px;
+    max-width: 600px;
     background: #fff;
     text-align: center;
 }
@@ -149,6 +160,7 @@ main {
     border: 1px solid #d1d1d1;
     padding: 5px;
     text-align: center;
+    width: 3em;
 }
 
 .big-button {
@@ -157,12 +169,31 @@ main {
 
 
 /* INTERACCIÓN: FLASHCARDS */
+.cardspace {
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardspace .arrowspace {
+    padding: 35% 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.arrow {
+    font-size: 28px;
+}
+
 .maincard {
     width: 300px;
     height: 300px;
     display: block;
     background-color: transparent;
-    margin: 40px;
+    cursor: pointer;
+    margin: 10px 0;
 }
 
 .relative-container {
@@ -190,12 +221,11 @@ main {
 }
 
 .card-front {
-    background-color: #d1d1d1;
-    color: black;
+    background-color: #fbc55b99;
 }
 
 .card-back {
-    background-color: #000;
+    background-color: #222;
     color: white;
     transform: rotateY(180deg);
 }

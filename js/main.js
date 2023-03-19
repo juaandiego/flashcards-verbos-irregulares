@@ -1,11 +1,8 @@
 /* Definiciones generales */
-import { verbos } from "./verbs.js";
 const dificultades = 5;
 const longPorDefecto = 20;
 const dificultadPorDefecto = 2;
 const teclasControl = ["j", "J", "l", "L", "k", "K"]
-let textoFrente = "";
-let textoAtras = "";
 
 
 /* Elementos */
@@ -20,18 +17,28 @@ const selectorCantidad = document.getElementById("cantidadEscogida");
 const inputsActualiza = document.getElementById("actualizaPosicion").elements;
 const reinicia = document.getElementById("reinicia");
 const flippeables = [cardFront, cardBack];
+const checks = [
+    document.getElementById("checkSimple"),
+    document.getElementById("checkParticipio")
+];
+const arrows = [
+    document.getElementById("flechaAntes"),
+    document.getElementById("flechaDespues")
+];
 
 
 /* ¿Sesión existente? */
 let sesion = JSON.parse(localStorage.getItem("sesion")) || false;
+let verbos = JSON.parse(localStorage.getItem("verbos")) || [];
 let listaActual = JSON.parse(localStorage.getItem("listaActual")) || [];
 let posicionActual = parseInt(localStorage.getItem("posicionActual")) || 0;
 
 
 /* Funciones */
-const iniciaApp = () => {
+const iniciaApp = async () => {
     if (!sesion || !listaActual) {
         overlaySettings.className = "main-overlay show";
+        verbos = await cargaVerbos();
         selectorDificultad.max = dificultades;
         selectorDificultad.value = 0;
         selectorCantidad.max = verbos.length;
@@ -40,7 +47,29 @@ const iniciaApp = () => {
     }
 }
 
+const cargaVerbos = async () => {
+    try {
+        const response = await fetch("../assets/verbs.json");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        // Error handling con SweetAlert
+    }
+}
+
+const validaChecks = (check) => {
+    let cualCambia = parseInt(check);
+    if (!checks[0].checked && !checks[1].checked) {
+        if (cualCambia === 0) { checks[1].checked = true }
+        else if (cualCambia === 1) { checks[0].checked = true }
+    }
+}
+
 const defineSesion = settings => {
+    let checkSimple = settings.get("checkSimple") ? true : false;
+    let checkParticipio = settings.get("checkParticipio") ? true : false;
+    let checkRandom = settings.get("checkRandom") ? true : false;
+
     let cantidad = settings.get("cantidad");
     if (!cantidad || cantidad < 1) {
         cantidad = longPorDefecto;
@@ -56,12 +85,16 @@ const defineSesion = settings => {
     }
 
     let listaGenerada = generaLista(cantidad, dificultad);
-    listaActual = randomizaLista(listaGenerada);
+    listaActual = checkRandom
+        ? randomizaLista(listaGenerada)
+        : listaGenerada;
 
-    let sesion = { cantidad, dificultad }
+    sesion = { cantidad, dificultad, checkSimple, checkParticipio, checkRandom }
     let sesionJson = JSON.stringify(sesion);
+    let verbosJson = JSON.stringify(verbos);
     let listaJson = JSON.stringify(listaActual);
     localStorage.setItem("sesion", sesionJson);
+    localStorage.setItem("verbos", verbosJson);
     localStorage.setItem("listaActual", listaJson);
     localStorage.setItem("posicionActual", "0");
 
@@ -96,6 +129,8 @@ const randomizaLista = lista => {
 }
 
 const imprimeTarjetaActual = (pos) => {
+    let textoFrente = "";
+    let textoAtras = "";
     let verbo = listaActual[pos];
 
     textoFrente = `
@@ -105,23 +140,35 @@ const imprimeTarjetaActual = (pos) => {
         </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
         <p class="p-b025">
-            Verbo ${pos + 1} de ${listaActual.length}
-        </p>`;
+            Verb ${pos + 1} out of ${listaActual.length}
+        </p>
+    `;
 
-    textoAtras = `
+    textoAtras += `
         <h2 class="card-title p-b025">
             Verb:<br />
             <span class="card-title-verb-big">${verbo.infinitive}</span>
         </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
+    `
 
-        <h3 class="card-title-verb">${verbo.simplePast}</h3>
-        <p class="p-b025">simple past</p>
-        <p class="i p-b"> ${verbo.simplePastExtraInfo} </p>
-        
-        <h3 class="card-title-verb">${verbo.pastParticiple}</h3>
-        <p class="p-b025">past participle</p>
-        <p class="i p-b"> ${verbo.pastParticipleExtraInfo} </p>`;
+    if (sesion.checkSimple === true) {
+        textoAtras += `
+            <h3 class="card-title-verb">${verbo.simplePast}
+            ${verbo.simplePastAlt ? " / " + verbo.simplePastAlt : ""}</h3>
+            <p class="p-b025">simple past</p>
+            <p class="i p-b"> ${verbo.simplePastExtraInfo ? verbo.simplePastExtraInfo : "&nbsp;"} </p>
+        `;
+    }
+
+    if (sesion.checkParticipio === true) {
+        textoAtras += `
+            <h3 class="card-title-verb">${verbo.pastParticiple}
+            ${verbo.pastParticipleAlt ? " / " + verbo.pastParticipleAlt : ""}</h3>
+            <p class="p-b025">past participle</p>
+            <p class="i p-b"> ${verbo.pastParticipleExtraInfo ? verbo.pastParticipleExtraInfo : "&nbsp;"} </p>
+        `;
+    }
 
     cardFront.innerHTML = textoFrente;
     cardBack.innerHTML = textoAtras;
@@ -171,9 +218,11 @@ const actualizaPosicion = direccion => {
     }
 
     if (huboCambios) {
+        let timeOut = estaVolteada ? 250 : 0;
         estaVolteada && cardStatus.remove("flip");
-        imprimeTarjetaActual(posicionActual);
         localStorage.setItem("posicionActual", `${posicionActual}`);
+        // Para compensar por transición en CSS
+        setTimeout(() => { imprimeTarjetaActual(posicionActual); }, timeOut);
     }
 }
 
@@ -185,6 +234,7 @@ const borraSesion = () => {
 
 /* Listeners y ejecuciones */
 document.addEventListener("DOMContentLoaded", iniciaApp);
+reinicia.addEventListener("click", borraSesion);
 
 formularioSettings.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -198,15 +248,26 @@ for (let i = 0; i < inputsActualiza.length; i++) {
     });
 }
 
+checks.forEach((e) => {
+    e.addEventListener("change", () => {
+        validaChecks(e.value);
+    });
+});
+
 flippeables.forEach((e) => {
     e.addEventListener("click", () => {
         actualizaPosicion("flip");
     });
-})
+});
+
+arrows.forEach((e) => {
+    let accion = e.dataset.action;
+    e.addEventListener("click", () => {
+        actualizaPosicion(accion);
+    });
+});
 
 document.addEventListener("keypress", (e) => {
     let tecla = e.key.toLowerCase();
     if (teclasControl.indexOf(tecla) !== -1) { actualizaPosicion(tecla); }
-})
-
-reinicia.addEventListener("click", borraSesion);
+});
