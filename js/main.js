@@ -49,7 +49,7 @@ const iniciaApp = async () => {
 
 const cargaVerbos = async () => {
     try {
-        const response = await fetch("../../assets/verbs.json");
+        const response = await fetch("./assets/verbs.json");
         const data = await response.json();
         return data;
     } catch (error) {
