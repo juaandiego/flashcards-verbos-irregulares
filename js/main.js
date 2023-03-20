@@ -208,8 +208,8 @@ const actualizaPosicion = direccion => {
     }
 
     if (huboCambios) {
-        let timeOut = estaVolteada ? 200 : 0;
         estaVolteada && cardStatus.remove("flip");
+        let timeOut = estaVolteada ? 500 : 0;
         localStorage.setItem("posicionActual", `${posicionActual}`);
         // Para compensar por transición en CSS
         setTimeout(() => { imprimeTarjetaActual(posicionActual); }, timeOut);
