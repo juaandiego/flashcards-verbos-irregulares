@@ -80,6 +80,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
     height: -webkit-fill-available;
 }
 
@@ -113,8 +114,9 @@ main {
     font-weight: 700;
 }
 
-.small-text {
-    font-size: 12px;
+.restart {
+    color: #00008b;
+    text-decoration: none;
 }
 
 
@@ -124,7 +126,8 @@ main {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: -webkit-fill-available;
     z-index: 999;
     background: rgba(0, 0, 0, 0.8);
 
@@ -227,7 +230,7 @@ main {
 }
 
 .card-front {
-    background-color: #fbc55b99;
+    background-color: #fbc55bcc;
 }
 
 .card-back {

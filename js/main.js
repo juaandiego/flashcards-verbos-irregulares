@@ -131,7 +131,7 @@ const imprimeTarjetaActual = (pos) => {
 
     textoFrente = `
         <h2 class="card-title p-b025">
-            Verb:<br />
+            Verb<br />
             <span class="card-title-verb-big">${verbo.infinitive}</span>
         </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
@@ -142,7 +142,7 @@ const imprimeTarjetaActual = (pos) => {
 
     textoAtras += `
         <h2 class="card-title p-b025">
-            Verb:<br />
+            Verb<br />
             <span class="card-title-verb-big">${verbo.infinitive}</span>
         </h2>
         <p class="i p-b">${verbo.infinitiveExtraInfo ? verbo.infinitiveExtraInfo : "&nbsp;"}</p>
@@ -171,7 +171,7 @@ const imprimeTarjetaActual = (pos) => {
 }
 
 const actualizaPosicion = direccion => {
-    let huboCambios = false;
+    let huboCambios = true;
     let estaVolteada = cardStatus.contains("flip");
 
     switch (direccion) {
@@ -179,37 +179,25 @@ const actualizaPosicion = direccion => {
         case "l":
             if (posicionActual < (listaActual.length - 1)) {
                 posicionActual++;
-                huboCambios = true;
             } else {
-                posicionActual = listaActual.length - 1;
+                borraSesion();
+                posicionActual = 0;
             }
             break;
         case "anterior":
         case "j":
             if (posicionActual > 0) {
                 posicionActual--;
-                huboCambios = true;
             } else {
-                posicionActual = 0;
+                posicionActual = listaActual.length - 1;
             }
             break;
-        case "inicio":
-            if (posicionActual !== 0) {
-                posicionActual = 0;
-                huboCambios = true;
-            }
-            break;
-        case "final":
-            if (posicionActual !== listaActual.length - 1) {
-                posicionActual = listaActual.length;
-                huboCambios = true;
-            }
-            break
         case "flip":
         case "k":
             estaVolteada
                 ? cardStatus.remove("flip")
                 : cardStatus.add("flip");
+            huboCambios = false;
             break;
     }
 
@@ -223,8 +211,17 @@ const actualizaPosicion = direccion => {
 }
 
 const borraSesion = () => {
-    localStorage.clear();
-    window.location.reload();
+    Swal.fire({
+        title: "¿Iniciar nuevamente?",
+        text: "Podrás configurar nuevamente tus tarjetas, pero perderás el progreso actual",
+        showCancelButton: true,
+        confirmButtonColor: "#e0ad46"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.clear();
+            window.location.reload();
+        }
+    });
 }
 
 
