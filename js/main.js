@@ -53,7 +53,13 @@ const cargaVerbos = async () => {
         const data = await response.json();
         return data;
     } catch (error) {
-        // Error handling con SweetAlert
+        Swal.fire({
+            title: "Ocurrió un error",
+            text: `Regarca la página para intentar de nuevo. Detalles: ${error}`,
+            type: "error",
+            confirmButtonText: "Intentar de nuevo",
+            confirmButtonColor: "#e0ad46"
+        }).then(() => { window.location.reload(); });
     }
 }
 
@@ -68,9 +74,9 @@ const validaChecks = (check) => {
 const defineSesion = settings => {
     let checkSimple = settings.get("checkSimple") ? true : false;
     let checkParticipio = settings.get("checkParticipio") ? true : false;
-    let checkRandom = settings.get("checkRandom") ? true : false;
-
     if (!checkSimple && !checkParticipio) { checkSimple = true; }
+
+    let checkRandom = settings.get("checkRandom") ? true : false;
 
     let cantidad = settings.get("cantidad");
     if (!cantidad || cantidad < 1) { cantidad = longPorDefecto; }
@@ -85,7 +91,7 @@ const defineSesion = settings => {
         ? randomizaLista(listaGenerada)
         : listaGenerada;
 
-    sesion = { cantidad, dificultad, checkSimple, checkParticipio, checkRandom }
+    sesion = { cantidad, dificultad, checkSimple, checkParticipio, checkRandom };
     let sesionJson = JSON.stringify(sesion);
     let verbosJson = JSON.stringify(verbos);
     let listaJson = JSON.stringify(listaActual);
@@ -202,7 +208,7 @@ const actualizaPosicion = direccion => {
     }
 
     if (huboCambios) {
-        let timeOut = estaVolteada ? 250 : 0;
+        let timeOut = estaVolteada ? 200 : 0;
         estaVolteada && cardStatus.remove("flip");
         localStorage.setItem("posicionActual", `${posicionActual}`);
         // Para compensar por transición en CSS
@@ -215,6 +221,8 @@ const borraSesion = () => {
         title: "¿Iniciar nuevamente?",
         text: "Podrás configurar nuevamente tus tarjetas, pero perderás el progreso actual",
         showCancelButton: true,
+        type: "warning",
+        cancelButtonText: "Quedarme aquí",
         confirmButtonColor: "#e0ad46"
     }).then((result) => {
         if (result.isConfirmed) {
