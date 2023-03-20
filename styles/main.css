@@ -58,7 +58,7 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100%;
     height: -webkit-fill-available;
     font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
     color: #222;
@@ -80,7 +80,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100%;
     height: -webkit-fill-available;
 }
 
